@@ -46,6 +46,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
+###################
+# ADDITIONAL GEMS #
+###################
+
 group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
@@ -56,3 +60,6 @@ end
 
 # Bootstrap css
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+# Rest  - https://github.com/rest-client/rest-client
+gem 'rest-client'

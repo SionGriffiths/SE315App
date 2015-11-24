@@ -1,4 +1,49 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Name:</strong>
+  <%= @wine.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @wine.description %>
+</p>
+
+<p>
+  <strong>Short description:</strong>
+  <%= @wine.short_description %>
+</p>
+
+<p>
+  <strong>Country of origin:</strong>
+  <%= @wine.country_of_origin %>
+</p>
+
+<p>
+  <strong>Grape type:</strong>
+  <%= @wine.grape_type %>
+</p>
+
+<p>
+  <strong>Vegetarian:</strong>
+  <%= @wine.vegetarian %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @wine.price %>
+</p>
+
+<p>
+  <strong>Supplier company:</strong>
+  <%= @wine.supplier_company %>
+</p>
+
+<p>
+  <strong>Pic url:</strong>
+  <%= @wine.pic_url %>
+</p>
+
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
 <%= link_to 'Back', wines_path %>

@@ -5,6 +5,15 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Short description</th>
+      <th>Country of origin</th>
+      <th>Grape type</th>
+      <th>Vegetarian</th>
+      <th>Price</th>
+      <th>Supplier company</th>
+      <th>Pic url</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +21,15 @@
   <tbody>
     <% @wines.each do |wine| %>
       <tr>
+        <td><%= wine.name %></td>
+        <td><%= wine.description %></td>
+        <td><%= wine.short_description %></td>
+        <td><%= wine.country_of_origin %></td>
+        <td><%= wine.grape_type %></td>
+        <td><%= wine.vegetarian %></td>
+        <td><%= wine.price %></td>
+        <td><%= wine.supplier_company %></td>
+        <td><%= wine.pic_url %></td>
         <td><%= link_to 'Show', wine %></td>
         <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
         <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +40,4 @@
 
 <br>
 
-<!--<%= link_to 'New Wine', new_wine_path %>-->
+<%= link_to 'New Wine', new_wine_path %>
