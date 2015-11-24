@@ -53,3 +53,6 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
+
+# Bootstrap css
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
