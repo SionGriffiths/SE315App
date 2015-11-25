@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+table.wine-table tr:hover {
+    background-color: #ababab;
+}
+
+
+/*remove black bar on hover*/

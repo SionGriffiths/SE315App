@@ -18,5 +18,13 @@
 
 
 
-
 // From http://stackoverflow.com/questions/9945620/making-a-table-row-into-a-link-in-rails
+//window.onload = function() {
+//
+//    $("tr[data-link]").click(function() {
+//        window.location = this.dataset.link;
+//    });
+//
+//
+//
+//};

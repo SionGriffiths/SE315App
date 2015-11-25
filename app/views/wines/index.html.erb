@@ -2,68 +2,43 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
-<table class="table table-striped">
+<table  class="table wine-table table-striped">
   <thead>
-    <tr>
-      <!--<th><%= model_class.human_attribute_name(:id) %></th>-->
-
-      <th><%= model_class.human_attribute_name(:name) %></th>
-
-      <!--<th><%= model_class.human_attribute_name(:description) %></th>-->
-
-      <th><%= model_class.human_attribute_name(:short_description) %></th>
-
-      <!--<th><%= model_class.human_attribute_name(:country_of_origin) %></th>-->
-
-      <!--<th><%= model_class.human_attribute_name(:grape_type) %></th>-->
-
-      <!--<th><%= model_class.human_attribute_name(:vegetarian) %></th>-->
-
-      <th><%= model_class.human_attribute_name(:price) %></th>
-
-      <th><%= model_class.human_attribute_name(:supplier_company) %></th>
-
-      <!--<th><%= model_class.human_attribute_name(:product_number) %></th>-->
-
-      <th><%= model_class.human_attribute_name(:bottle_size) %></th>
-
-      <th><%= model_class.human_attribute_name(:pic_url) %></th>
-
-
-    </tr>
+  <tr>
+    <th><%= model_class.human_attribute_name(:name) %></th>
+    <th><%= model_class.human_attribute_name(:short_description) %></th>
+    <th><%= model_class.human_attribute_name(:price) %></th>
+    <th><%= model_class.human_attribute_name(:supplier_company) %></th>
+    <th><%= model_class.human_attribute_name(:bottle_size) %></th>
+    <th><%= model_class.human_attribute_name(:pic_url) %></th>
+  </tr>
   </thead>
   <tbody>
-    <% @wines.each do |wine| %>
+  <% @wines.each do |wine| %>
 
+  <%
+     image_reference = wine.pic_url || 'placeholder_bottle.png'
+  %>
 
       <tr class="wine" data-link="<%= wine_path(wine) %>">
-
         <td><%= wine.name %></td>
-
-        <!--<td><%= wine.description %></td>-->
-
         <td><%= wine.short_description %></td>
-
-        <!--<td><%= wine.country_of_origin %></td>-->
-
-        <!--<td><%= wine.grape_type %></td>-->
-
-        <!--<td><%= wine.vegetarian %></td>-->
-
         <td><%= wine.price %></td>
-
         <td><%= wine.supplier_company %></td>
-
-        <!--<td><%= wine.product_number %></td>-->
-
         <td><%= wine.bottle_size %></td>
-
-        <td><%= wine.pic_url %></td>
-
-        <!--<td><%=l wine.created_at %></td>-->
+        <!--<td><%= wine.pic_url %></td>-->
+        <!--http://stackoverflow.com/questions/2115214/link-to-image-tag-how-to-add-class-to-a-tag-->
+        <td><%= link_to image_tag(image_reference), wine_path(wine) %></td>
 
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
+<div class="digg_pagination">
+  <div>
+    <%= page_entries_info @wines %>
+  </div>
+  <%= will_paginate @wines, container: false %>
+</div>
+<br/>
