@@ -18,5 +18,7 @@ table.wine-table tr:hover {
     background-color: #ababab;
 }
 
+button.add-basket {
+    padding : 50px;
+}
 
-/*remove black bar on hover*/

@@ -1,5 +1,5 @@
 class BasketsController < ApplicationController
-  before_action :set_basket, only: [:show, :edit, :update, :destroy]
+  before_action :set_basket, only: [:show,]
 
   # GET /baskets
   # GET /baskets.json

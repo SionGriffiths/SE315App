@@ -45,7 +45,7 @@
 
 
 </dl>
-
+<%= button_to 'Add to Basket', line_items_path(wine_id: @wine) ,{class: 'btn btn-default add-basket' }%>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               wines_path, :class => 'btn btn-default'  %>
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
