@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+Supplier.create(name: "Drink AND Drive!", base_rest_url: "http://localhost:8080")
+Supplier.create(name: "Alcohol Destroyed My Family", base_rest_url: "http://localhost:8090")

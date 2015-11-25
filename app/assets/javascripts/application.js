@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+
+
+
+// From http://stackoverflow.com/questions/9945620/making-a-table-row-into-a-link-in-rails

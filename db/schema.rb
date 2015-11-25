@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20151124192908) do
     t.boolean  "vegetarian"
     t.decimal  "price"
     t.string   "supplier_company"
+    t.string   "product_number"
+    t.string   "bottle_size"
     t.string   "pic_url"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false

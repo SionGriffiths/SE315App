@@ -9,6 +9,8 @@ class CreateWines < ActiveRecord::Migration
       t.boolean :vegetarian
       t.decimal :price
       t.string :supplier_company
+      t.string :product_number
+      t.string :bottle_size
       t.string :pic_url
 
       t.timestamps null: false

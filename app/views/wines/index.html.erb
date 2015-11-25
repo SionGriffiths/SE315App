@@ -1,43 +1,69 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Wines</h1>
-
-<table>
+<%- model_class = Wine -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Short description</th>
-      <th>Country of origin</th>
-      <th>Grape type</th>
-      <th>Vegetarian</th>
-      <th>Price</th>
-      <th>Supplier company</th>
-      <th>Pic url</th>
-      <th colspan="3"></th>
+      <!--<th><%= model_class.human_attribute_name(:id) %></th>-->
+
+      <th><%= model_class.human_attribute_name(:name) %></th>
+
+      <!--<th><%= model_class.human_attribute_name(:description) %></th>-->
+
+      <th><%= model_class.human_attribute_name(:short_description) %></th>
+
+      <!--<th><%= model_class.human_attribute_name(:country_of_origin) %></th>-->
+
+      <!--<th><%= model_class.human_attribute_name(:grape_type) %></th>-->
+
+      <!--<th><%= model_class.human_attribute_name(:vegetarian) %></th>-->
+
+      <th><%= model_class.human_attribute_name(:price) %></th>
+
+      <th><%= model_class.human_attribute_name(:supplier_company) %></th>
+
+      <!--<th><%= model_class.human_attribute_name(:product_number) %></th>-->
+
+      <th><%= model_class.human_attribute_name(:bottle_size) %></th>
+
+      <th><%= model_class.human_attribute_name(:pic_url) %></th>
+
+
     </tr>
   </thead>
-
   <tbody>
     <% @wines.each do |wine| %>
-      <tr>
+
+
+      <tr class="wine" data-link="<%= wine_path(wine) %>">
+
         <td><%= wine.name %></td>
-        <td><%= wine.description %></td>
+
+        <!--<td><%= wine.description %></td>-->
+
         <td><%= wine.short_description %></td>
-        <td><%= wine.country_of_origin %></td>
-        <td><%= wine.grape_type %></td>
-        <td><%= wine.vegetarian %></td>
+
+        <!--<td><%= wine.country_of_origin %></td>-->
+
+        <!--<td><%= wine.grape_type %></td>-->
+
+        <!--<td><%= wine.vegetarian %></td>-->
+
         <td><%= wine.price %></td>
+
         <td><%= wine.supplier_company %></td>
+
+        <!--<td><%= wine.product_number %></td>-->
+
+        <td><%= wine.bottle_size %></td>
+
         <td><%= wine.pic_url %></td>
-        <td><%= link_to 'Show', wine %></td>
-        <td><%= link_to 'Edit', edit_wine_path(wine) %></td>
-        <td><%= link_to 'Destroy', wine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+        <!--<td><%=l wine.created_at %></td>-->
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Wine', new_wine_path %>
