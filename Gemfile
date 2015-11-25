@@ -61,5 +61,11 @@ end
 # Bootstrap css
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
-# Rest  - https://github.com/rest-client/rest-client
+# Rest client - https://github.com/rest-client/rest-client
 gem 'rest-client'
+
+# Debugger
+#gem 'ruby-debug-ide'
+
+# Pagination
+gem 'will_paginate'

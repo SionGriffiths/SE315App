@@ -5,11 +5,13 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
     @wines = Wine.all
+    SupplierService.update_wines
   end
 
   # GET /wines/1
   # GET /wines/1.json
   def show
+
   end
 
   # GET /wines/new
@@ -60,6 +62,9 @@ class WinesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
