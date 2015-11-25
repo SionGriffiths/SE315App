@@ -1,9 +1,16 @@
 <%- model_class = Wine -%>
+<%
+   image_reference = @wine.pic_url || 'placeholder_bottle.png'
+%>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h1><%= @wine.name %></h1>
 </div>
 
 <dl class="dl-horizontal">
+
+  <!--<dt><strong><%= model_class.human_attribute_name(:pic_url) %>:</strong></dt>-->
+  <dd><%= image_tag(image_reference) %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @wine.name %></dd>
@@ -35,8 +42,7 @@
   <dt><strong><%= model_class.human_attribute_name(:bottle_size) %>:</strong></dt>
   <dd><%= @wine.bottle_size %></dd>
 
-  <dt><strong><%= model_class.human_attribute_name(:pic_url) %>:</strong></dt>
-  <dd><%= @wine.pic_url %></dd>
+
 
 </dl>
 

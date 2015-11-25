@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124192908) do
+ActiveRecord::Schema.define(version: 20151125192650) do
+
+  create_table "baskets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "wine_id"
+    t.integer  "basket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "line_items", ["basket_id"], name: "index_line_items_on_basket_id"
+  add_index "line_items", ["wine_id"], name: "index_line_items_on_wine_id"
 
   create_table "suppliers", force: :cascade do |t|
     t.string   "base_rest_url"

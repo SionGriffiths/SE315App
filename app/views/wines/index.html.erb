@@ -22,7 +22,7 @@
 
       <tr class="wine" data-link="<%= wine_path(wine) %>">
         <td><%= wine.name %></td>
-        <td><%= wine.short_description %></td>
+        <td><%=h truncate(wine.short_description, :length => 50) %></td>
         <td><%= wine.price %></td>
         <td><%= wine.supplier_company %></td>
         <td><%= wine.bottle_size %></td>
