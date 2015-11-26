@@ -5,10 +5,14 @@ class WinesController < ApplicationController
   # GET /wines
   # GET /wines.json
   def index
+
+    #todo deal with the things - no suppliers for example.
+    #todo be clever with how you update the wines..
+    SupplierService.update_wines Supplier.all
     @wines = Wine.paginate(page: params[:page],
                            per_page: params[:per_page])
                  .order(:name)
-    SupplierService.update_wines Supplier.all
+
   end
 
   # GET /wines/1
@@ -83,6 +87,6 @@ class WinesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def wine_params
-    params.require(:wine).permit(:name, :description, :short_description, :country_of_origin, :grape_type, :vegetarian, :price, :supplier_company, :pic_url)
+    params.require(:wine).permit(:name, :description, :short_description, :country_of_origin, :grape_type, :vegetarian, :price, :supplier_id, :pic_url)
   end
 end

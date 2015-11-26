@@ -16,15 +16,19 @@
   <tbody>
   <% @wines.each do |wine| %>
 
-  <%
-     image_reference = wine.pic_url || 'placeholder_bottle.png'
-  %>
+      <%
+         if wine.pic_url == '' || wine.pic_url == nil
+           image_reference =  'placeholder_bottle.png'
+         else
+           image_reference = wine.pic_url
+         end
+      %>
 
       <tr class="wine" data-link="<%= wine_path(wine) %>">
         <td><%= wine.name %></td>
         <td><%=h truncate(wine.short_description, :length => 50) %></td>
         <td><%= wine.price %></td>
-        <td><%= wine.supplier_company %></td>
+        <td><%= wine.supplier.name %></td>
         <td><%= wine.bottle_size %></td>
         <!--<td><%= wine.pic_url %></td>-->
         <!--http://stackoverflow.com/questions/2115214/link-to-image-tag-how-to-add-class-to-a-tag-->

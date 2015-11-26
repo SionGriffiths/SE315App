@@ -41,8 +41,9 @@ class SupplierService
     wine.grape_type = json['grapeType']
     wine.vegetarian = json['vegetarian']
     wine.product_number = json['productNumber']
+    wine.pic_url = json['pictureURL']
     wine.bottle_size = json['bottleSize']
-    wine.supplier_company = supplier.name
+    wine.supplier_id = supplier.id
   end
 
 
