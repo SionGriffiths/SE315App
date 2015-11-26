@@ -1,6 +1,6 @@
 class SupplierService
 
-
+#TODO class might make more sense as a module.. ??    Needs a major refactor and rethink anyhow
 
   def self.update_wines suppliers
     suppliers.each do |supplier|
