@@ -28,7 +28,7 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     wine = Wine.find(params[:wine_id])
-    @line_item = @basket.add_wine(wine.id)
+    @line_item = @basket.add_wine(wine.id, params[:quantity].to_i)
 
 
     respond_to do |format|

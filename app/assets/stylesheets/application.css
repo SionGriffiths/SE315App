@@ -22,3 +22,6 @@ button.add-basket {
     padding : 50px;
 }
 
+.basket-quantity-input{
+    width : 50%
+}

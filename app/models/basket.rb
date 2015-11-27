@@ -5,10 +5,10 @@ class Basket < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
 
 
-  def add_wine(wine_id)
+  def add_wine(wine_id, quantity)
     current_item = line_items.find_by(wine_id: wine_id)
     if current_item
-      current_item.quantity += 1
+      current_item.quantity += quantity
     else
       current_item = line_items.build(wine_id: wine_id)
     end
