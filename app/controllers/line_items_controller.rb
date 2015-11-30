@@ -1,5 +1,7 @@
 class LineItemsController < ApplicationController
-  include CurrentBasket
+
+
+  #This class is based off the examples in the course textbook - Agile Web Development with Rails
 
   before_action :set_basket, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
@@ -33,7 +35,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.basket, notice: 'Line item was successfully created.' }
+        format.html { redirect_to @line_item.basket}
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -59,9 +61,10 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    current_basket_url = @line_item.basket
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to current_basket_url, notice: 'Item successfully removed from basket' }
       format.json { head :no_content }
     end
   end
@@ -74,6 +77,6 @@ class LineItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def line_item_params
-      params.require(:line_item).permit(:wine_id, :basket_id)
+      params.require(:line_item).permit(:wine_id)
     end
 end

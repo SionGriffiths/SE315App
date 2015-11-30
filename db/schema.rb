@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126202053) do
+ActiveRecord::Schema.define(version: 20151130212956) do
 
   create_table "baskets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -29,6 +29,16 @@ ActiveRecord::Schema.define(version: 20151126202053) do
   add_index "line_items", ["basket_id"], name: "index_line_items_on_basket_id"
   add_index "line_items", ["wine_id"], name: "index_line_items_on_wine_id"
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "basket_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["basket_id"], name: "index_orders_on_basket_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
   create_table "suppliers", force: :cascade do |t|
     t.string   "base_rest_url"
     t.string   "name"
@@ -37,10 +47,11 @@ ActiveRecord::Schema.define(version: 20151126202053) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "first_name"
+    t.string   "second_name"
   end
 
   create_table "wines", force: :cascade do |t|

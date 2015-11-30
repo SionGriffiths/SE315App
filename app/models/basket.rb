@@ -6,16 +6,25 @@ class Basket < ActiveRecord::Base
 
 
   def add_wine(wine_id, quantity)
+    if quantity < 1
+      quantity = 1
+    end
     current_item = line_items.find_by(wine_id: wine_id)
     if current_item
       current_item.quantity += quantity
     else
       current_item = line_items.build(wine_id: wine_id)
+      current_item.quantity = quantity
     end
-    puts '<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'
-    puts current_item.quantity
     current_item
   end
 
+  def total_price
+    line_items.to_a.sum { |item| item.total_price }
+  end
+
+  def total_items
+    line_items.to_a.sum { |item| item.quantity}
+  end
 
 end

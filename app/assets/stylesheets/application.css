@@ -14,7 +14,7 @@
  *= require_self
  */
 
-table.wine-table tr:hover {
+tbody.wine-table tr:hover {
     background-color: #ababab;
 }
 
@@ -24,4 +24,13 @@ button.add-basket {
 
 .basket-quantity-input{
     width : 50%
+}
+
+.total_row {
+    font-weight : bold;
+    background: #ffDDDD;
+}
+
+#topBar{
+    background: #ffDDDD;
 }

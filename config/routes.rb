@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :orders
+  root to: 'home#index'
+
   resources :line_items
   resources :baskets
   # resources :suppliers
