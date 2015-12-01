@@ -25,7 +25,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    RestClient.post('http://localhost:8080/order/new',payload: @order.basket.line_items.wine.to_json)
+    # RestClient.post('http://localhost:8080/order/new',payload: @order.basket.line_items.wine.to_json)
+    # RestClient.post('http://localhost:8080/order/new',payload: OrderService.marshal_order_json(@order))
+    OrderService.marshal_order_json(@order)
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
