@@ -35,6 +35,7 @@ class Wine < ActiveRecord::Base
     end.join(' and ')
     # puts ">>>>>>>>>>>>>>>>"
     # puts query.to_s
+    # puts ">>>>>>>>>>>>>>>>"
     Wine.where(query)
   end
 
