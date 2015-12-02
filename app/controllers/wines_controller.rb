@@ -26,29 +26,8 @@ class WinesController < ApplicationController
     end
 
 
-
-
-    # if params[:search]
-    #   @posts = Wine.search(params[:search]).order("created_at DESC")
-    # else
-    #   @posts = Wine.all.order('created_at DESC')
-    # end
-
   end
 
-  # def search
-  #
-  #   respond_to do |format|
-  #     format.html {
-  #       @wines = Wine.search(params[:search])
-  #                    .paginate(page: params[:page],
-  #                              per_page: params[:per_page])
-  #                    .order(:name)
-  #       render 'index'
-  #     }
-  #   end
-  #
-  # end
 
   # GET /wines/1
   # GET /wines/1.json
