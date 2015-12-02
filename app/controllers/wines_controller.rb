@@ -8,12 +8,47 @@ class WinesController < ApplicationController
 
     #todo deal with the things - no suppliers for example.
     #todo be clever with how you update the wines..
+
     SupplierService.update_wines Supplier.all
-    @wines = Wine.paginate(page: params[:page],
-                           per_page: params[:per_page])
-                 .order(:name)
+
+    #credit search - http://www.korenlc.com/creating-a-simple-search-in-rails-4/
+
+    #todo - tidy this please!
+    if params[:search].blank?
+      @wines = Wine.paginate(page: params[:page],
+                             per_page: params[:per_page])
+                   .order(:name)
+    else
+      @wines = Wine.search(params[:search])
+                   .paginate(page: params[:page],
+                             per_page: params[:per_page])
+                   .order(:name)
+    end
+
+
+
+
+    # if params[:search]
+    #   @posts = Wine.search(params[:search]).order("created_at DESC")
+    # else
+    #   @posts = Wine.all.order('created_at DESC')
+    # end
 
   end
+
+  # def search
+  #
+  #   respond_to do |format|
+  #     format.html {
+  #       @wines = Wine.search(params[:search])
+  #                    .paginate(page: params[:page],
+  #                              per_page: params[:per_page])
+  #                    .order(:name)
+  #       render 'index'
+  #     }
+  #   end
+  #
+  # end
 
   # GET /wines/1
   # GET /wines/1.json
@@ -89,4 +124,10 @@ class WinesController < ApplicationController
   def wine_params
     params.require(:wine).permit(:name, :description, :short_description, :country_of_origin, :grape_type, :vegetarian, :price, :supplier_id, :pic_url)
   end
+
+  def update_issue
+    logger.error "Can't connect to webservice"
+    redirect_to index, notice: 'There was a problem with displaying wines'
+  end
+
 end

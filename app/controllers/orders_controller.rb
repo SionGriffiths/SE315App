@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-require 'json'
+
   # GET /orders
   # GET /orders.json
   def index
@@ -25,11 +25,24 @@ require 'json'
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    send_data = OrderService.marshal_order_json(@order)
 
-    temp = send_data['Drink AND Drive!'].to_json
-    puts temp
-    RestClient.post('http://localhost:8080/order/new', temp, :content_type => :json, :accept => :json )
+    send_data = OrderService.marshal_order_json(@order)
+    suppliers = Supplier.all
+
+    suppliers.each do |supplier|
+      if send_data[supplier.name]
+        Thread.new {
+          temp = send_data[supplier.name].to_json
+          #todo handle no connection to webservice
+          RestClient.post(supplier.base_rest_url + supplier.new_orders_url, temp,
+                          :content_type => :json, :accept => :json )
+        }
+      end
+    end
+
+    # temp = send_data['Drink AND Drive!'].to_json
+    # puts temp
+    # RestClient.post('http://localhost:8080/order/new', temp, :content_type => :json, :accept => :json )
     # OrderService.marshal_order_json(@order)
     # puts OrderService.marshal_order_json(@order).to_json
     respond_to do |format|
@@ -68,15 +81,15 @@ require 'json'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def order_params
-      params.require(:order).permit(:basket_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def order_params
+    params.require(:order).permit(:basket_id, :user_id)
+  end
 
 
 

@@ -6,6 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-Supplier.create(name: "Drink AND Drive!", base_rest_url: "http://localhost:8080")
-Supplier.create(name: "Alcohol Destroyed My Family", base_rest_url: "http://localhost:8090")
+#todo add the urls for all wines and new orders to the supplier
+Supplier.create(name: 'Drink AND Drive!', base_rest_url: 'http://localhost:8080', all_wines_url: '/wine/all', new_orders_url: '/order/new')
+Supplier.create(name: 'Alcohol Destroyed My Family', base_rest_url: 'http://localhost:8090', all_wines_url: '/wine/all', new_orders_url: '/order/new')

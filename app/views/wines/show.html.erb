@@ -57,12 +57,8 @@
 
 
 </dl>
-<!--TODO
-you want to make sure users cannot add to basket if quantity less than 1, min:1 takes care of it server side
- but user can enter -200 for example-->
-
 <%= form_tag line_items_path(wine_id: @wine) do %>
-    <%= number_field_tag :quantity,  params[:quantity], min:1 %>
+    <%= number_field_tag :quantity,  params[:quantity], min:1, max:999, :value => 1 %>
     <%= submit_tag 'Add to basket' %>
 <% end %>
 

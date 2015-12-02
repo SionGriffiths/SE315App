@@ -4,7 +4,16 @@
 <% end %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
+
+  <%= form_tag  wines_path , :method=>:get, class:'form-inline', id:'wine-search-form' do %>
+      <%= search_field_tag :search, params[:search], placeholder: 'Search wines', class:'form-control' %>
+      <%= submit_tag 'Search', class:'btn btn-default' ,id:'wine-search-submit' %>
+  <% end %>
 </div>
+
+<% if @wines.present? %>
+
 <table  class="table wine-table table-striped">
   <thead>
   <tr>
@@ -28,20 +37,21 @@
       %>
 
       <tr class="wine" data-link="<%= wine_path(wine) %>">
-        <td><%= wine.name %></td>
+        <td ><%= wine.name %></td>
         <td><%=h truncate(wine.short_description, :length => 50) %></td>
         <td><%= wine.price %></td>
         <td><%= wine.supplier.name %></td>
         <td><%= wine.bottle_size %></td>
-        <!--<td><%= wine.pic_url %></td>-->
-
-
         <td><%= link_to image_tag(image_reference), wine_path(wine) %></td>
 
       </tr>
   <% end %>
   </tbody>
 </table>
+
+<% else %>
+    <p> No wines to display, search with different criteria or contact an administrator. </p>
+<% end %>
 
 <div class="digg_pagination">
   <div>

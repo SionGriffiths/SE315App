@@ -6,18 +6,19 @@ class SupplierService
 
   def self.update_wines suppliers
     suppliers.each do |supplier|
-      json = JSON.parse(RestClient.get supplier.base_rest_url+ "/wine/all")
+      # Thread.new {
+      #todo handle no connection to web service and other errors
+      json = JSON.parse(RestClient.get supplier.base_rest_url+supplier.all_wines_url)
       puts json
       json.each do |item|
         #check for existing prior
-
         wine = Wine.find_by(product_number: item['productNumber'])
 
         #if wine is currently not saved in db, create and save
         if  !wine
           new_wine = Wine.new
           set_wine_attibs_from_JSON(item, new_wine, supplier)
-          new_wine.save! #do we want to raise error here? probably
+          new_wine.save #do we want to raise error here? probably
         else
           #compare prices
           #if new is cheaper, update the record with new details
@@ -27,13 +28,15 @@ class SupplierService
           end
         end
       end
+      # }
     end
   end
 
 
+
   private
 
-  #TODO Move this somewhere sensible
+  #TODO Move this somewhere sensible maybe?
   def self.set_wine_attibs_from_JSON(json, wine, supplier)
     wine.name = json['name']
     wine.country_of_origin = json['countryOfOrigin']
