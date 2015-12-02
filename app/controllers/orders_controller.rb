@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+
   end
 
   # GET /orders/1/edit
@@ -33,7 +34,7 @@ class OrdersController < ApplicationController
       if send_data[supplier.name]
         Thread.new {
           temp = send_data[supplier.name].to_json
-          #todo handle no connection to webservice
+          #todo handle no connection to webservice + tidy this up
           RestClient.post(supplier.base_rest_url + supplier.new_orders_url, temp,
                           :content_type => :json, :accept => :json )
         }
@@ -47,6 +48,9 @@ class OrdersController < ApplicationController
     # puts OrderService.marshal_order_json(@order).to_json
     respond_to do |format|
       if @order.save
+        Basket.destroy(session[:basket_id])
+        session[:basket_id] = nil
+        #todo change this redirect
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

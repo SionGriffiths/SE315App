@@ -69,3 +69,6 @@ gem 'rest-client'
 
 # Pagination
 gem 'will_paginate'
+
+# has_secure_password
+gem 'bcrypt-ruby', '~> 3.0.0'
