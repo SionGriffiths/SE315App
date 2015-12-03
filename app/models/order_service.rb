@@ -10,9 +10,9 @@ class OrderService
         marshalled_order[supplier]['orderDetails'] = []
       end
       unless marshalled_order.has_key? 'customer'
-        marshalled_order[supplier]['customer'] =  {'first_name' => 'test fname',
-                                                  'second_name' => 'test sname',
-                                                  'address' => 'address meight'}
+        marshalled_order[supplier]['customer'] =  {'name' => order.name,
+                                                  'email' => order.email,
+                                                  'address' => order.address}
       end
       marshalled_order[supplier]['orderDetails'].push(
           'wineName' =>  basket_item.wine.name,

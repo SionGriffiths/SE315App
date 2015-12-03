@@ -34,3 +34,7 @@ button.add-basket {
 #topBar{
     background: #ffDDDD;
 }
+
+.top-bar{
+    margin: 5px;
+}

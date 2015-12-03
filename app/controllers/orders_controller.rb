@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :authorize
 
 
+
   # GET /orders
   # GET /orders.json
   def index
@@ -17,7 +18,8 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-
+    # we authorize first so there'll always be a user in the session... heh..
+    populate_placeholder_values
   end
 
   # GET /orders/1/edit
@@ -27,7 +29,17 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    # todo refactor this method... pls!
     @order = Order.new(order_params)
+
+    basket = @basket
+
+    if(basket.line_items.length > 0)
+      @order.basket = basket
+    else
+      redirect_to basket_path basket.id, notice: 'Invalid basket'
+      return
+    end
 
     send_data = OrderService.marshal_order_json(@order)
     suppliers = Supplier.all
@@ -43,11 +55,6 @@ class OrdersController < ApplicationController
       end
     end
 
-    # temp = send_data['Drink AND Drive!'].to_json
-    # puts temp
-    # RestClient.post('http://localhost:8080/order/new', temp, :content_type => :json, :accept => :json )
-    # OrderService.marshal_order_json(@order)
-    # puts OrderService.marshal_order_json(@order).to_json
     respond_to do |format|
       if @order.save
         Basket.destroy(session[:basket_id])
@@ -93,9 +100,16 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:basket_id, :user_id)
+    params.require(:order).permit(:name, :email, :address)
   end
 
-
+  #we want to populate some values from the current user into the order
+  # we don't want to do this in the view so it's here
+  def populate_placeholder_values
+    current_user = User.find_by_id session[:user_id]
+    @order.name = current_user.name
+    @order.email = current_user.email
+    @order.address = current_user.address
+  end
 
 end
