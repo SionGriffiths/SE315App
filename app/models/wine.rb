@@ -21,7 +21,7 @@ class Wine < ActiveRecord::Base
     6
   end
 
-  #todo list of search terms, list of params to be searched
+
   # CSA and http://stackoverflow.com/questions/24805784/rails-4-sanitizing-user-input
   def self.search(search_string)
     columns = @search_attribs
@@ -33,9 +33,6 @@ class Wine < ActiveRecord::Base
       end
       "(#{fields.join(' OR ')})"
     end.join(' and ')
-    # puts ">>>>>>>>>>>>>>>>"
-    # puts query.to_s
-    # puts ">>>>>>>>>>>>>>>>"
     Wine.where(query)
   end
 

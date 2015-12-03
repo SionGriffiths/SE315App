@@ -6,14 +6,12 @@ class WinesController < ApplicationController
   # GET /wines.json
   def index
 
-    #todo deal with the things - no suppliers for example.
+
     #todo be clever with how you update the wines..
 
     SupplierService.update_wines Supplier.all
 
     #credit search - http://www.korenlc.com/creating-a-simple-search-in-rails-4/
-
-    #todo - tidy this please!
     if params[:search].blank?
       @wines = Wine.paginate(page: params[:page],
                              per_page: params[:per_page])

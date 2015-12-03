@@ -1,15 +1,18 @@
 class SupplierService
 
 #TODO class might make more sense as a module.. ??    Needs a major refactor and rethink anyhow
-#TODO Handle connection unavailable
-#TODO use 'find by or initialize'
 
   def self.update_wines suppliers
     suppliers.each do |supplier|
-      # Thread.new {
-      #todo handle no connection to web service and other errors
-      json = JSON.parse(RestClient.get supplier.base_rest_url+supplier.all_wines_url)
-      puts json
+
+      result = '[]'
+      begin
+       RestClient.get supplier.base_rest_url+supplier.all_wines_url
+       rescue Errno::ECONNREFUSED
+        return
+      end
+      json = JSON.parse(result)
+
       json.each do |item|
         #check for existing prior
         wine = Wine.find_by(product_number: item['productNumber'])
@@ -28,7 +31,7 @@ class SupplierService
           end
         end
       end
-      # }
+
     end
   end
 

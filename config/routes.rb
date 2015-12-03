@@ -5,17 +5,17 @@ Rails.application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
-    get 'logout' => :destroy
+    get 'logout' => :destroy #Just so you can log out directly via the address bar
   end
 
   controller :users do
     get 'register' => :new
   end
 
-  resources :users
-  resources :orders
+  resources :users, :only => [:new, :create]
+  resources :orders, :only => [:new, :create]
   resources :line_items
-  resources :baskets
+  resources :baskets, :only => [:new, :show, :create, :destroy]
   resources :wines
 
   root to: 'home#index'
