@@ -12,6 +12,11 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   resources :users
+
+  controller :users do
+    get 'register' => :new
+  end
+
   resources :orders
   resources :line_items
   resources :baskets
