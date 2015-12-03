@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'admin/index'
+
 
   controller :sessions do
     get 'login' => :new
@@ -7,8 +7,6 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
     get 'logout' => :destroy
   end
-
-
 
   controller :users do
     get 'register' => :new

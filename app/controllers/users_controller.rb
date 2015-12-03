@@ -28,6 +28,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         format.html { redirect_to root_path, notice: 'Thank you for registering!' }
         format.json { render :show, status: :created, location: @user }
       else

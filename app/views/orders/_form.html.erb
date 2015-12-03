@@ -15,20 +15,21 @@
 
     <div class="field">
       <%= f.label :name %><br>
-      <%= f.text_field :name  %>
+      <%= f.text_field :name , class:'form-control' %>
     </div>
 
     <div class="field">
       <%= f.label :email %><br>
-      <%= f.text_field :email,:placeholder => @order.email %>
+      <%= f.text_field :email,class:'form-control' %>
     </div>
 
     <div class="field">
       <%= f.label :address %><br>
-      <%= f.text_field :address %>
+      <%= f.text_field :address, class:'form-control' %>
     </div>
 
     <div class="actions">
-      <%= f.submit 'Place Order'%>
+      <%= f.submit 'Place Order', class:'btn btn-default'%>
+      <%= link_to 'Continue Shopping', wines_path, class:'btn btn-default' %>
     </div>
 <% end %>

@@ -8,6 +8,7 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
+<div class="container col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 <% if @basket.line_items.length < 1 %>
     <h3> Your basket is empty</h3>
 <%else%>
@@ -23,16 +24,19 @@
       <tr class="total_row">
         <td colspan="2">Total</td>
         <td class = "basket_total"><%= number_to_currency(@basket.total_price) %></td>
+        <td> <%= button_to 'Empty basket', @basket, method: :delete,
+                          data: { confirm: 'Are you sure?' }, class:'btn btn-default' %></td>
       </tr>
 
     </table>
-    <%= button_to 'Empty basket', @basket, method: :delete,
-                  data: { confirm: 'Are you sure?' }, class:'btn btn-default' %>
+
     <%= link_to 'Go to checkout', new_order_path, class:'btn btn-default' %>
+
 <%end%>
+  <%= link_to 'Back to wines' ,wines_url, class:'btn btn-default'%>
+</div>
 
 
 
 
-<%= link_to 'Back to wines' ,wines_url, class:'btn btn-default'%>
 
