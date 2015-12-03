@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
+
 
   # GET /orders
   # GET /orders.json
@@ -50,8 +52,7 @@ class OrdersController < ApplicationController
       if @order.save
         Basket.destroy(session[:basket_id])
         session[:basket_id] = nil
-        #todo change this redirect
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
