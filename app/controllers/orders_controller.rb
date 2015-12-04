@@ -46,12 +46,14 @@ class OrdersController < ApplicationController
 
     suppliers.each do |supplier|
       if send_data[supplier.name]
-        Thread.new {
-          temp = send_data[supplier.name].to_json
-          #todo handle no connection to webservice + tidy this up
-          RestClient.post(supplier.base_rest_url + supplier.new_orders_url, temp,
+        send_json = send_data[supplier.name].to_json
+        begin
+          RestClient.post(supplier.base_rest_url + supplier.new_orders_url, send_json,
                           :content_type => :json, :accept => :json )
-        }
+        rescue Errno::ECONNREFUSED
+          redirect_to root_path, notice: 'Cannot place order currently, try again later'
+          return
+        end
       end
     end
 

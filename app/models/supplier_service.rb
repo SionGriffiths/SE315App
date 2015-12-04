@@ -7,9 +7,9 @@ class SupplierService
 
       result = '[]'
       begin
-       RestClient.get supplier.base_rest_url+supplier.all_wines_url
+      result = RestClient.get supplier.base_rest_url+supplier.all_wines_url
        rescue Errno::ECONNREFUSED
-        return
+        next #go to next iteration if problem
       end
       json = JSON.parse(result)
 
