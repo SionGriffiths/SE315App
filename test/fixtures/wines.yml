@@ -8,7 +8,7 @@ one:
   grape_type: MyString
   vegetarian: false
   price: 9.99
-  supplier_company: MyString
+  supplier_id: 1
   pic_url: MyString
 
 two:
@@ -19,5 +19,5 @@ two:
   grape_type: MyString
   vegetarian: false
   price: 9.99
-  supplier_company: MyString
+  supplier_id: 1
   pic_url: MyString

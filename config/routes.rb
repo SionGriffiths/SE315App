@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, :only => [:new, :create]
   resources :orders, :only => [:new, :create]
-  resources :line_items
+  resources :line_items, :only => [:new, :create, :destroy]
   resources :baskets, :only => [:new, :show, :create, :destroy]
   resources :wines
 

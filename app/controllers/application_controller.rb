@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include CurrentBasket
-
   before_action :set_basket
 
   helper_method :is_logged_in?
@@ -14,6 +13,7 @@ class ApplicationController < ActionController::Base
   def get_session_user
      User.find_by_id session[:user_id]
   end
+
 
 
 

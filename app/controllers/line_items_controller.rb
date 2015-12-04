@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-
+  include CurrentBasket
 
   #This class is based off the examples in the course textbook - Agile Web Development with Rails
 
@@ -31,7 +31,6 @@ class LineItemsController < ApplicationController
   def create
     wine = Wine.find(params[:wine_id])
     @line_item = @basket.add_wine(wine.id, params[:quantity].to_i)
-
 
     respond_to do |format|
       if @line_item.save

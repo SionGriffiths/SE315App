@@ -1,9 +1,9 @@
 class BasketsController < ApplicationController
+  include CurrentBasket
 
   #This class is based off the examples in the course textbook - Agile Web Development with Rails
 
   before_action :set_basket, only: [:show, :edit, :update, :destroy]
-
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_basket
 
   # GET /baskets
@@ -15,6 +15,7 @@ class BasketsController < ApplicationController
   # GET /baskets/1
   # GET /baskets/1.json
   def show
+
   end
 
   # GET /baskets/new
@@ -59,6 +60,7 @@ class BasketsController < ApplicationController
   # DELETE /baskets/1
   # DELETE /baskets/1.json
   def destroy
+    #Limit destroy to in-session basket so user cannot destroy anothers basket
     @basket.destroy if @basket.id == session[:basket_id]
     session[:basket_id] = nil
     respond_to do |format|

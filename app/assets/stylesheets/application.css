@@ -31,7 +31,7 @@
 
 
 tbody.wine-table tr:hover {
-    background-color: #ababab;
+    background-color: #ababab ;
 }
 
 button.add-basket {
@@ -44,7 +44,7 @@ button.add-basket {
 
 .total_row {
     font-weight : bold;
-    background: #ffDDDD;
+    background: #ffDDDD !important;
 }
 
 #topBar{
