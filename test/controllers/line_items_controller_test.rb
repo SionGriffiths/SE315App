@@ -17,12 +17,12 @@ class LineItemsControllerTest < ActionController::TestCase
   end
 
   test "should create line_item" do
-    assert_difference('LineItem.count') do
-      # post :create, line_item: { basket_id: @line_item.basket_id, wine_id: wines(:wine1).id }
-       post :create, wine_id: wines(:wine1).id
-    end
 
-    assert_redirected_to @line_item.basket
+    assert_difference('LineItem.count') do
+       post :create, wine_id: wines(:two).id
+    end
+    item = LineItem.find_by_wine_id wines(:two).id
+    assert_redirected_to item.basket
   end
 
   # test "should show line_item" do
@@ -41,9 +41,12 @@ class LineItemsControllerTest < ActionController::TestCase
   # end
 
   test "should destroy line_item" do
+    #Keep a reference to the containing basket to test redirect
+    basket = @line_item.basket
     assert_difference('LineItem.count', -1) do
       delete :destroy, id: @line_item
     end
-    assert_redirected_to @line_item.basket
+
+    assert_redirected_to basket
   end
 end
