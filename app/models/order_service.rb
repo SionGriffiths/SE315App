@@ -24,27 +24,4 @@ class OrderService
 
     marshalled_order
   end
-
-
-
-
-  # def split_order order
-  #
-  # end
-  #
-  #
-  # def self.suppliers_in_order order
-  #   supplier_list =[]
-  #   order.basket.line_items.each do |basket_item|
-  #     if !supplier_list.include? basket_item.wine.supplier
-  #       supplier_list.push basket_item.wine.supplier
-  #     end
-  #   end
-  #   supplier_list
-  # end
-  #
-  # def create_orders_for_suppliers
-  #
-  # end
-
 end

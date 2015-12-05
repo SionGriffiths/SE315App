@@ -53,7 +53,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
-  gem 'factory_girl'
+  gem 'factory_girl', :require => false
+  gem 'factory_girl_rails', :require => false
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
@@ -64,9 +65,12 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 # Rest client - https://github.com/rest-client/rest-client
 gem 'rest-client'
 
+gem 'whenever', :require => false
 # Debugger
 #gem 'ruby-debug-ide'
 
 # Pagination
 gem 'will_paginate'
 
+#Scheduler
+gem 'rufus-scheduler'

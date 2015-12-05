@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :orders, :only => [:new, :create]
   resources :line_items, :only => [:new, :create, :destroy]
   resources :baskets, :only => [:new, :show, :create, :destroy]
-  resources :wines
+  resources :wines, :only => [:index,:show]
 
   root to: 'home#index'
 

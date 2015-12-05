@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  base_rest_url: MyString
+supplier1:
+  base_rest_url: https://localhost:8080
+  all_wines_url: /wines/all
+  new_orders_url: /orders/new
   name: MyString
 
 two:
-  base_rest_url: MyString
+  base_rest_url: https://localhost:8080
   name: MyString
+  all_wines_url: /wines/all
+  new_orders_url: /orders/new

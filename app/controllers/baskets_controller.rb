@@ -2,8 +2,9 @@ class BasketsController < ApplicationController
   include CurrentBasket
 
   #This class is based off the examples in the course textbook - Agile Web Development with Rails
+  skip_before_action :authorize
 
-  before_action :set_basket, only: [:show, :edit, :update, :destroy]
+  before_action :set_basket, only: [:show, :destroy]
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_basket
 
   # GET /baskets
@@ -15,7 +16,9 @@ class BasketsController < ApplicationController
   # GET /baskets/1
   # GET /baskets/1.json
   def show
-
+    unless params[:id].eql? session[:basket_id].to_s
+      redirect_to wines_path, notice: 'Invalid Basket.'
+    end
   end
 
   # GET /baskets/new

@@ -1,15 +1,15 @@
 class WinesController < ApplicationController
   before_action :set_current_page, except: [:index]
   before_action :set_wine, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authorize
   # GET /wines
   # GET /wines.json
   def index
 
 
     #todo be clever with how you update the wines..
+     #we don't want to hit the webservice in tests
 
-    SupplierService.update_wines Supplier.all
 
     #credit search - http://www.korenlc.com/creating-a-simple-search-in-rails-4/
     if params[:search].blank?
@@ -22,8 +22,6 @@ class WinesController < ApplicationController
                              per_page: params[:per_page])
                    .order(:name)
     end
-
-
   end
 
 

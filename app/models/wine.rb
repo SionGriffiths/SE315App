@@ -3,6 +3,7 @@ class Wine < ActiveRecord::Base
   has_many :line_items
   belongs_to :supplier
 
+  # List of attributes we want to search on
   @search_attribs = %w(name description short_description country_of_origin grape_type bottle_size vegetarian product_number price)
 
   before_destroy :ensure_not_referenced_by_any_line_item
@@ -11,7 +12,7 @@ class Wine < ActiveRecord::Base
   validates :supplier, presence: true
 
 
-  #base comparison
+  #base comparison for price
   def more_expensive_than?(other_price)
     Float(self.price) > Float(other_price)
   end
@@ -35,30 +36,6 @@ class Wine < ActiveRecord::Base
     end.join(' and ')
     Wine.where(query)
   end
-
-
-
-
-  #
-  # query = ''
-  #
-  #
-  #
-  # terms.each do |term|
-  #   search_frags = [columns].flatten.map do |field|
-  #      "LOWER(#{field}) LIKE #{term}"
-  #   end
-  #   query << "#{search_frags.join(" OR ")}"
-  #
-  # end
-  # #
-  # # where("name LIKE ?", "%#{search_query}%")
-  # # where("product_number LIKE ?", "%#{search_query}%")
-  # puts query
-  # where "#{query}"
-
-
-
 
 
 

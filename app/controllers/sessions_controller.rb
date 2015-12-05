@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-
+  skip_before_action :authorize
 
   def new
     flash[:ref_url] = request.referer

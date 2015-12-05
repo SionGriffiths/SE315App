@@ -24,6 +24,7 @@ class BasketsControllerTest < ActionController::TestCase
   end
 
   test "should show basket" do
+    session[:basket_id] = @basket.id
     get :show, id: @basket
     assert_response :success
   end

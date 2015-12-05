@@ -2,7 +2,7 @@ class LineItemsController < ApplicationController
   include CurrentBasket
 
   #This class is based off the examples in the course textbook - Agile Web Development with Rails
-
+  skip_before_action :authorize
   before_action :set_basket, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
