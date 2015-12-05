@@ -18,8 +18,9 @@ FactoryGirl.define do
     f.vegetarian false
     f.price 9.99
     f.pic_url 'test_picurl'
-    f.supplier Supplier.find_or_create_by name: 'supplier_name'
-  end
+    f.supplier Supplier.find_or_create_by name: 'Drink AND Drive!'
+  end #We'll use an actual supplier here, make sure we have seeded the test DB
+      #Otherwise order placement is difficult to test
 
 
 end

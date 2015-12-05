@@ -16,43 +16,43 @@
 <% end %>
 
 <div class="page-header">
-  <h1><%= @wine.name %></h1>
+  <h2><%= @wine.name %></h2>
 </div>
 <div class="container col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 <dl class="dl-horizontal">
 
-  <!--<dt><strong><%= model_class.human_attribute_name(:pic_url) %>:</strong></dt>-->
+
   <dd><%= image_tag(image_reference) %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @wine.name %></dd>
+  <dd class="show_wine_name"><%= @wine.name %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @wine.description %></dd>
+  <dd class="show_wine_desc"><%= @wine.description %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:short_description) %>:</strong></dt>
-  <dd><%= @wine.short_description %></dd>
+  <dd class="show_wine_short_desc"><%= @wine.short_description %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:country_of_origin) %>:</strong></dt>
-  <dd><%= @wine.country_of_origin %></dd>
+  <dd class="show_wine_country"><%= @wine.country_of_origin %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:grape_type) %>:</strong></dt>
-  <dd><%= @wine.grape_type %></dd>
+  <dd class="show_wine_grape"><%= @wine.grape_type %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:vegetarian) %>:</strong></dt>
-  <dd><%= @wine.vegetarian %></dd>
+  <dd class="show_wine_veg"><%= @wine.vegetarian %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
-  <dd><%= @wine.price %></dd>
+  <dd class="show_wine_price"><%= @wine.price %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:supplier_company) %>:</strong></dt>
-  <dd><%= @wine.supplier.name %></dd>
+  <dd class="show_wine_supplier"><%= @wine.supplier.name %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:product_number) %>:</strong></dt>
-  <dd><%= @wine.product_number %></dd>
+  <dd class="show_wine_product_num"><%= @wine.product_number %></dd>
 
   <dt><strong><%= model_class.human_attribute_name(:bottle_size) %>:</strong></dt>
-  <dd><%= @wine.bottle_size %></dd>
+  <dd class="show_wine_bottle_size"><%= @wine.bottle_size %></dd>
 
 
 

@@ -7,12 +7,8 @@ class WinesController < ApplicationController
   def index
 
 
-    #todo be clever with how you update the wines..
-     #we don't want to hit the webservice in tests
 
-
-    #credit search - http://www.korenlc.com/creating-a-simple-search-in-rails-4/
-    if params[:search].blank?
+    if params[:search].blank? #check for search terms in params
       @wines = Wine.paginate(page: params[:page],
                              per_page: params[:per_page])
                    .order(:name)
@@ -94,15 +90,9 @@ class WinesController < ApplicationController
     @current_page = params[:page] || 1
   end
 
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def wine_params
     params.require(:wine).permit(:name, :description, :short_description, :country_of_origin, :grape_type, :vegetarian, :price, :supplier_id, :pic_url)
-  end
-
-  def update_issue
-    logger.error "Can't connect to webservice"
-    redirect_to index, notice: 'There was a problem with displaying wines'
   end
 
 end

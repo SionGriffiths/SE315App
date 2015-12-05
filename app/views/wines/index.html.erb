@@ -36,13 +36,13 @@
          end
       %>
 
-      <tr class="wine" data-link="<%= wine_path(wine) %>">
+      <tr class="wine" id="<%= wine.name %>" data-link="<%= wine_path(wine) %>">
         <td class="name" ><%= wine.name %></td>
         <td class="short_desc"><%=h truncate(wine.short_description, :length => 50) %></td>
         <td class="price"><%= wine.price %></td>
         <td><%= wine.supplier.name %></td>
         <td><%= wine.bottle_size %></td>
-        <td><%= link_to image_tag(image_reference), wine_path(wine) %></td>
+        <td><%= link_to image_tag(image_reference), wine_path(wine), class:'wine_image' %></td>
 
       </tr>
   <% end %>

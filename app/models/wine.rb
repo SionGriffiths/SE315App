@@ -8,7 +8,7 @@ class Wine < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  #we don't want wines to be persisted without a supplier
+  #we don't want wines to be created without a supplier
   validates :supplier, presence: true
 
 
@@ -23,7 +23,7 @@ class Wine < ActiveRecord::Base
   end
 
 
-  # CSA and http://stackoverflow.com/questions/24805784/rails-4-sanitizing-user-input
+  # CSA example and http://stackoverflow.com/questions/24805784/rails-4-sanitizing-user-input
   def self.search(search_string)
     columns = @search_attribs
     terms = search_string.split

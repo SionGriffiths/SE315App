@@ -4,6 +4,7 @@ Feature: Search
   So I can find wines of interest
 
   Scenario: Find wines by name
+#    This step in global_steps
     Given we have the following Wines:
       | name   | short_description | price |
       | wine10 | short desc1       | 2.99  |

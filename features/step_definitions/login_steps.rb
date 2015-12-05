@@ -10,10 +10,10 @@ When(/^I try to log into the site with valid credentials$/) do
 end
 
 Then(/^I should successfully log in$/) do
-
   expect(page).to have_xpath("//*[@id='logout_button']")
-
 end
+
+
 
 When(/^I try to log into the site with invalid credentials$/) do
   visit("/login")
@@ -42,4 +42,13 @@ Then(/^I should be logged in as the new user$/) do
  expect(page).to have_text('Thank you for registering!')
  expect(page).to have_text('Hi, new user')
  expect(page).to have_xpath("//*[@id='logout_button']")
+end
+
+And(/^I attempt to log out$/)do
+  visit("/logout")
+end
+
+Then(/^I should be logged out$/)do
+  expect(page).to have_xpath("//*[@id='login_button']")
+  expect(page).to have_text('Not logged in')
 end

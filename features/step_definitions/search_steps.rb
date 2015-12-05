@@ -1,10 +1,3 @@
-Given(/^we have the following Wines:$/) do |wines|
-  wines_attributes = wines.hashes.map { |tab_wine_attrs|
-    wine_attrs = FactoryGirl.attributes_for(:wine).stringify_keys
-    wine_attrs.merge(tab_wine_attrs)
-  }
-  Wine.create!(wines_attributes)
-end
 
 When(/^I search for Wine "(.*?)"$/) do |query|
   visit('/wines')
