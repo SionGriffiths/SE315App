@@ -10,9 +10,9 @@ When(/^I try to log into the site with valid credentials$/) do
 end
 
 Then(/^I should successfully log in$/) do
-  expect(page).to have_xpath("//*[@id='logout_button']")
+  expect(page).to have_link('logout_button')
+  expect(page).to have_text('LOGGED IN')
 end
-
 
 
 When(/^I try to log into the site with invalid credentials$/) do

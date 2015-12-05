@@ -5,11 +5,6 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 
-
-  <%= form_tag  wines_path , :method=>:get, class:'form-inline', id:'wine-search-form' do %>
-      <%= search_field_tag :search, params[:search], placeholder: 'Search wines', class:'form-control' %>
-      <%= submit_tag 'Search', class:'btn btn-default' ,id:'wine-search-submit' %>
-  <% end %>
 </div>
 
 <% if @wines.present? %>
