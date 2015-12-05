@@ -3,8 +3,10 @@
       <p id="notice"><%= notice %></p>
   <% end %>
   <div class="container col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
-<h1>The premier site for Alcohol-free wine comparison!</h1>
+    <h1>The premier site for Alcohol-free wine comparison!</h1>
     <%= link_to 'Compare Wines', wines_path, class:'btn btn-default' %>
-    <%= link_to 'Login or Register', login_path, class:'btn btn-default' %>
-    </div>
+    <% if !is_logged_in? %>
+        <%= link_to 'Login or Register', login_path, class:'btn btn-default' %>
+    <% end %>
+  </div>
 </div>

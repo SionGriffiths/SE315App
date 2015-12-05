@@ -14,6 +14,11 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    if is_logged_in?
+      redirect_to root_path,
+                  alert: "You are already logged in, please log out if you'd like to register a new account"
+      return
+    end
     @user = User.new
   end
 

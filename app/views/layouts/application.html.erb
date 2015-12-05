@@ -16,7 +16,7 @@
     <span id="login" class="pull-right top-bar">
       <% if is_logged_in? %>
       <p>LOGGED IN </p>
-         <p>Hi, <%= get_session_user_name %></p>
+         <p id="topbar_username">Hi, <%= get_session_user_name %></p>
           <%= link_to 'Log out',  logout_path, id:'logout_button', class:'btn btn-default'%>
           <% else %>
       <p>Not logged in</p>
