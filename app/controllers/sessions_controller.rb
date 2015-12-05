@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
-      if flash[:ref_url]
+      if flash[:ref_url] && flash[:ref_url] != login_url
         redirect_to flash[:ref_url]
       else
         redirect_to root_path
