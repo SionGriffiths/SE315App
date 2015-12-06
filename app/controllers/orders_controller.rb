@@ -42,23 +42,8 @@ class OrdersController < ApplicationController
     end
 
     #We marshal the order data into a hash and get all the suppliers
-    send_data = OrderService.marshal_order_to_hash(@order)
-    suppliers = Supplier.all
-
-    suppliers.each do |supplier|
-      # The order hash is split on suppliers at the top level
-      if send_data[supplier.name]
-        #we prepare each supplier their part as json
-        send_json = send_data[supplier.name].to_json
-        begin #Post the marshalled order as json to each supplier web service
-          RestClient.post(supplier.base_rest_url + supplier.new_orders_url, send_json,
-                          :content_type => :json, :accept => :json )
-        rescue Errno::ECONNREFUSED
-          redirect_to root_path, notice: 'Cannot place order currently, try again later'
-          return
-        end
-      end
-    end
+    # OrderService.marshal_order_to_hash(@order)
+    OrderService.do_order(@order)
 
     # Baskets that have been processed successfully need to be destroyed and removed
     # from the session hash
@@ -120,9 +105,10 @@ class OrdersController < ApplicationController
   end
 
 
+  #persist the line_items in the order so basket can be destroyed
   def move_line_items_to_order basket ,order
     basket.line_items.each do |item|
-      item.basket_id = nil #prevent delete of line items when basket is destroyed.
+      item.basket_id = nil #prevent cascade delete
       order.line_items  << item
     end
   end
