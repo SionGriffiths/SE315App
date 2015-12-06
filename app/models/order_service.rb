@@ -7,8 +7,8 @@ class OrderService
 
     marshalled_order = Hash.new
 
-    order.basket.line_items.each do |basket_item|
-      supplier = basket_item.wine.supplier.name
+    order.line_items.each do |item|
+      supplier = item.wine.supplier.name
 
       # Each supplier has a separate top level entry, used to split the order
       unless marshalled_order.has_key? supplier
@@ -25,9 +25,9 @@ class OrderService
 
       # Add the details for each wine in the basket to the hash
       marshalled_order[supplier]['orderDetails'].push(
-          'wineName' =>  basket_item.wine.name,
-          'quantity' => basket_item.quantity,
-          'productNumber' => basket_item.wine.product_number
+          'wineName' =>  item.wine.name,
+          'quantity' => item.quantity,
+          'productNumber' => item.wine.product_number
       )
 
     end

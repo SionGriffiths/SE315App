@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206165310) do
+ActiveRecord::Schema.define(version: 20151206215452) do
 
   create_table "baskets", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -24,9 +24,11 @@ ActiveRecord::Schema.define(version: 20151206165310) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "quantity",   default: 1
+    t.integer  "order_id"
   end
 
   add_index "line_items", ["basket_id"], name: "index_line_items_on_basket_id"
+  add_index "line_items", ["order_id"], name: "index_line_items_on_order_id"
   add_index "line_items", ["wine_id"], name: "index_line_items_on_wine_id"
 
   create_table "orders", force: :cascade do |t|

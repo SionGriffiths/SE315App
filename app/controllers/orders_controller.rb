@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     basket = @basket
     # we only want to process baskets that contain wines
     if basket.line_items.length > 0
-      @order.basket = basket
+      move_line_items_to_order basket, @order
     else
       redirect_to basket_path basket.id, notice: 'Invalid basket'
       return
@@ -64,7 +64,6 @@ class OrdersController < ApplicationController
     # from the session hash
     respond_to do |format|
       if @order.save
-
         Basket.destroy(session[:basket_id])
         session[:basket_id] = nil
         format.html { redirect_to root_path, notice: 'Order was successfully created.' }
@@ -119,5 +118,14 @@ class OrdersController < ApplicationController
     @order.email = current_user.email
     @order.address = current_user.address
   end
+
+
+  def move_line_items_to_order basket ,order
+    basket.line_items.each do |item|
+      item.basket_id = nil #prevent delete of line items when basket is destroyed.
+      order.line_items  << item
+    end
+  end
+
 
 end
