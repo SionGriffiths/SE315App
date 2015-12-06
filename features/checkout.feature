@@ -21,7 +21,8 @@ Feature: Checkout
 
 
   Scenario: Attempt checkout whilst logged in
-    Given I am logged in
+    Given I have a valid user account
+    And I am logged in
     And I have added "wine01" to my basket
     When I attempt to checkout
     Then I should be able to place an order

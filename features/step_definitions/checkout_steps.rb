@@ -18,12 +18,15 @@ end
 
 Given(/^I am logged in$/)do
   visit("/login")
-  fill_in('email', with: 'sig1@aber.ac.uk')
-  fill_in('password', with: 'secret')
+  fill_in('login_email_field', with: 'factory@test.user')
+  fill_in('login_password_field', with: 'secret')
   click_button('login_submit')
 end
 
 Then(/^I should be able to place an order$/)do
-  click_button('place_order')
-  expect(page).to have_text('Order was successfully created.')
+   puts current_url
+   click_button('place_order')
+   expect(page).to have_text('Order was successfully created.')
+    puts current_url
+
 end

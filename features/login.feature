@@ -5,16 +5,16 @@ Feature: Login
 
   Background:
     Given I am not logged in
+    And I have a valid user account
+
 
   Scenario: Log in with valid credentials
     When I try to log into the site with valid credentials
     Then I should successfully log in
 
-
   Scenario: Attempt login with invalid credentials
     When I try to log into the site with invalid credentials
     Then I should be prompted to log in again
-
 
   Scenario: Register a new user account
     When I go to the register page

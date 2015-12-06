@@ -2,10 +2,14 @@ Given(/^I am not logged in$/) do
   visit('/logout')
 end
 
+Given(/^I have a valid user account$/)do
+ @user = User.create! FactoryGirl.attributes_for(:user).stringify_keys
+end
+
 When(/^I try to log into the site with valid credentials$/) do
   visit("/login")
-  fill_in('email', with: 'sig1@aber.ac.uk')
-  fill_in('password', with: 'secret')
+  fill_in('login_email_field', with: @user.email)
+  fill_in('login_password_field', with: @user.password)
   click_button('login_submit')
 end
 
@@ -13,7 +17,6 @@ Then(/^I should successfully log in$/) do
   expect(page).to have_link('logout_button')
   expect(page).to have_text('LOGGED IN')
 end
-
 
 When(/^I try to log into the site with invalid credentials$/) do
   visit("/login")
