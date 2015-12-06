@@ -29,6 +29,8 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
+    # Grab the wine referenced in parameter along with quantity from the wine details page
+    # when user adds to basket
     wine = Wine.find(params[:wine_id])
     @line_item = @basket.add_wine(wine.id, params[:quantity].to_i)
 

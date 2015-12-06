@@ -16,6 +16,7 @@ class BasketsController < ApplicationController
   # GET /baskets/1
   # GET /baskets/1.json
   def show
+    # We enforce that a user cannot access a basket other than the one in their session
     unless params[:id].eql? session[:basket_id].to_s
       redirect_to wines_path, notice: 'Invalid Basket.'
     end
@@ -83,6 +84,8 @@ class BasketsController < ApplicationController
     params[:basket]
   end
 
+
+  #From the course book, redirect if trying to access non-existant basket
   def invalid_basket
     logger.error "Attempted to access invalid basket #{params[:id]}"
     redirect_to wines_url, notice: 'Invalid Basket'

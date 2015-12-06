@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  #Inspired by both CSA app and course text book
+  #Inspired by both CSA app and course text book -  Agile Web Development with Rails
   validates :name, :address, :email, presence: true
   validates_format_of :email,
                       with: /\A([\w\.\-\+]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,

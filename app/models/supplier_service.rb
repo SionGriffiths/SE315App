@@ -1,17 +1,30 @@
 class SupplierService
 
-#TODO class might make more sense as a module.. ??    Needs a major refactor and rethink anyhow
+  # This class is a service used to update the wines in the system from the supplier webservices
+  # This class is invoked on a timed schedule only with no direct calls from the rest of the application
+  # The cron timings are defined in config/initializers/task_schedulers.rb
+
+  # This service class will periodically poll the supplier webservices for updates
+  # and update wines if they are more recently modified than the last successful update time
+  # currently the updating of previously help wines is done solely if the new version is
+  # cheaper than the previous
+
+  # Initialize time to 1970, this is used as the first last update time
+  # we want everything at first
   @time = Time.new(1970)
 
 
   def self.update_wines suppliers
-puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-puts '>>>>>>      Update Supplier'
-puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
+    puts '>>>>>>      Update Supplier'
+    puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
     suppliers.each do |supplier|
       result = '[]'
       begin
+        # make get request for wines to suppliers with @time as if-modified-since header value
+        # we'll only receive wines that are updated since then
         result = RestClient::Request.execute(
             :method => :get,
             :url => supplier.base_rest_url+supplier.all_wines_url,
@@ -21,10 +34,9 @@ puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
         next #go to next supplier if connection problem
       end
       if result.length < 1
-        next # nothing new so no need to parse
-
+        next # nothing new  skip, no need to parse
       else
-        @time = Time.now
+        @time = Time.now  # Set last update time to now
         process_result(result,supplier)
       end
     end
@@ -58,8 +70,7 @@ puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     end
   end
 
-  #TODO Move this somewhere sensible maybe? Do it more elegantly :(
-  # populate a wine instance from the json
+  # selectively populate a wine instance from the json
   def self.set_wine_attibs_from_JSON(json, wine, supplier)
     wine.name = json['name']
     wine.country_of_origin = json['countryOfOrigin']

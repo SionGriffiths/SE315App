@@ -1,10 +1,16 @@
 class SessionsController < ApplicationController
 
+  #This class is based off the examples in the course textbook - Agile Web Development with Rails
+
+
   skip_before_action :authorize
 
+  # We want to keep a reference of where a user wanted to go when redirected to login
   def new
     flash[:ref_url] = request.referer
   end
+
+  # do user login, if redirected to /login then redirect to previous request url after success
 
   def create
     user = User.find_by(email: params[:email])
@@ -22,6 +28,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  #logout functionality, clear session
   def destroy
     session[:user_id] = nil
     session[:basket_id] = nil

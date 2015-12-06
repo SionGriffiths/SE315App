@@ -5,6 +5,7 @@ class Basket < ActiveRecord::Base
   has_many :line_items, dependent: :destroy
 
 
+  #Adding a quantity of wine to the basket
   def add_wine(wine_id, quantity)
     if quantity < 1
       quantity = 1
@@ -18,6 +19,8 @@ class Basket < ActiveRecord::Base
     end
     current_item
   end
+
+
 
   def total_price
     line_items.to_a.sum { |item| item.total_price }

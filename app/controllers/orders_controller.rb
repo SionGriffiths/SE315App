@@ -33,21 +33,24 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
 
     basket = @basket
-
-    if(basket.line_items.length > 0)
+    # we only want to process baskets that contain wines
+    if basket.line_items.length > 0
       @order.basket = basket
     else
       redirect_to basket_path basket.id, notice: 'Invalid basket'
       return
     end
 
-    send_data = OrderService.marshal_order_json(@order)
+    #We marshal the order data into a hash and get all the suppliers
+    send_data = OrderService.marshal_order_to_hash(@order)
     suppliers = Supplier.all
 
     suppliers.each do |supplier|
+      # The order hash is split on suppliers at the top level
       if send_data[supplier.name]
+        #we prepare each supplier their part as json
         send_json = send_data[supplier.name].to_json
-        begin
+        begin #Post the marshalled order as json to each supplier web service
           RestClient.post(supplier.base_rest_url + supplier.new_orders_url, send_json,
                           :content_type => :json, :accept => :json )
         rescue Errno::ECONNREFUSED
@@ -57,8 +60,11 @@ class OrdersController < ApplicationController
       end
     end
 
+    # Baskets that have been processed successfully need to be destroyed and removed
+    # from the session hash
     respond_to do |format|
       if @order.save
+
         Basket.destroy(session[:basket_id])
         session[:basket_id] = nil
         format.html { redirect_to root_path, notice: 'Order was successfully created.' }

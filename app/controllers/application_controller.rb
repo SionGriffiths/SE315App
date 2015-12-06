@@ -6,9 +6,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authorize
 
+
+  #we define some helpful utility methods here so that views can access them
   helper_method :is_logged_in?
   helper_method :get_session_user
   helper_method :get_session_user_name
+
 
   def is_logged_in?
     logged_in_user = get_session_user
@@ -24,6 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
 
   def authorize
     unless get_session_user

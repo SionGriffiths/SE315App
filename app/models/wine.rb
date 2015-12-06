@@ -26,15 +26,15 @@ class Wine < ActiveRecord::Base
   # CSA example and http://stackoverflow.com/questions/24805784/rails-4-sanitizing-user-input
   def self.search(search_string)
     columns = @search_attribs
-    terms = search_string.split
+    terms = search_string.split #split each term on space
 
-    query = terms.map do |term|
-      fields = columns.map do|column|
-        "LOWER(#{column}) LIKE #{sanitize("%#{term}%")}"
+    query = terms.map do |term| #map each query term
+      fields = columns.map do|column| # against each searchable columns
+        "LOWER(#{column}) LIKE #{sanitize("%#{term}%")}" # in a 'like' query
       end
-      "(#{fields.join(' OR ')})"
-    end.join(' and ')
-    Wine.where(query)
+      "(#{fields.join(' OR ')})" # add or between each one
+    end.join(' and ') # and after each term
+    Wine.where(query) # do the search query
   end
 
 
