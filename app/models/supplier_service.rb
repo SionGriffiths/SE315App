@@ -11,7 +11,7 @@ class SupplierService
 
   # Initialize time to 1970, this is used as the first last update time
   # we want everything at first
-  @time = Time.new(1970)
+
 
 
   def self.update_wines suppliers
@@ -21,6 +21,7 @@ class SupplierService
     puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
 
     suppliers.each do |supplier|
+
       result = '[]'
       begin
         # make get request for wines to suppliers with @time as if-modified-since header value
@@ -28,7 +29,7 @@ class SupplierService
         result = RestClient::Request.execute(
             :method => :get,
             :url => supplier.base_rest_url+supplier.all_wines_url,
-            :headers => {"If-Modified-Since" => @time}
+            :headers => {"If-Modified-Since" => supplier.last_update}
         )
       rescue Errno::ECONNREFUSED
         next #go to next supplier if connection problem
@@ -36,7 +37,8 @@ class SupplierService
       if result.length < 1
         next # nothing new  skip, no need to parse
       else
-        @time = Time.now  # Set last update time to now
+        supplier.last_update = DateTime.now.to_formatted_s(:db)  # Set last update time to now
+        supplier.save
         process_result(result,supplier)
       end
     end

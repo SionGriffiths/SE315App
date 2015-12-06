@@ -8,7 +8,7 @@ class Wine < ActiveRecord::Base
 
   before_destroy :ensure_not_referenced_by_any_line_item
 
-  #we don't want wines to be created without a supplier
+  #we don't want wines to be created without certain information
   validates :supplier, presence: true
 
 

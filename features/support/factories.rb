@@ -3,10 +3,11 @@ require 'factory_girl'
 FactoryGirl.define do
 
   factory :supplier do |f|
-    f.base_rest_url 'test Url'
-    f.all_wines_url 'wines url'
-    f.new_orders_url 'orders url'
+    f.base_rest_url 'http://localhost:8080'
+    f.all_wines_url '/wine/all'
+    f.new_orders_url '/order/new'
     f.name 'supplier_name'
+    f.last_update '0000-00-00 00:00:00'
   end
 
   factory :wine do |f|
@@ -15,6 +16,7 @@ FactoryGirl.define do
     f.short_description 'test_short_desc'
     f.country_of_origin 'test_country'
     f.grape_type 'test_grape'
+    f.product_number '0002'
     f.vegetarian false
     f.price 9.99
     f.pic_url 'test_picurl'

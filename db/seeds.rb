@@ -8,8 +8,8 @@
 
 
 
-Supplier.create(name: 'Drink AND Drive!', base_rest_url: 'http://localhost:8080', all_wines_url: '/wine/all', new_orders_url: '/order/new')
-Supplier.create(name: 'Get a Grape!', base_rest_url: 'http://localhost:8090', all_wines_url: '/wine/all', new_orders_url: '/order/new')
+Supplier.create(name: 'Drink AND Drive!', base_rest_url: 'http://localhost:8080', all_wines_url: '/wine/all', new_orders_url: '/order/new', last_update:'0000-00-00 00:00:00')
+Supplier.create(name: 'Get a Grape!', base_rest_url: 'http://localhost:8090', all_wines_url: '/wine/all', new_orders_url: '/order/new', last_update:'0000-00-00 00:00:00')
 
 
 User.transaction do
