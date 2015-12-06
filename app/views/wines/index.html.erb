@@ -1,9 +1,17 @@
 <%- model_class = Wine -%>
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div>
+        <div class="update-nag">
+          <div class="update-split update-danger"></div>
+          <div class="update-text"><%= notice %></div>
+        </div>
+      </div>
+    </div>
 <% end %>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+
 
 </div>
 

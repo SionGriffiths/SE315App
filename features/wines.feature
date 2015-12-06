@@ -33,10 +33,10 @@ Feature: Wines
 
   Scenario Outline: View all details for a wine
     When I click on the image for "wine02"
-    Then I can see the following <field_name> detailed in the page
+    Then I can see the following <field_names> detailed in the page
 
     Examples:
-      | field_name       |
+      | field_names       |
       | Name             |
       | Description      |
       | Short description|

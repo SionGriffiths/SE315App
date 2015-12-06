@@ -1,6 +1,13 @@
 <div class="container">
-  <% if notice %>
-      <p id="notice"><%= notice %></p>
+  <% if flash[:alert] || notice %>
+      <div class="row">
+        <div>
+          <div class="update-nag">
+            <div class="update-split update-success"></div>
+            <div class="update-text"><%= flash[:alert] %> <%= notice %></div>
+          </div>
+        </div>
+      </div>
   <% end %>
   <div class="container col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 text-center">
     <h1>The premier site for Alcohol-free wine comparison!</h1>

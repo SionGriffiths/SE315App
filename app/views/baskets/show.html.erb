@@ -1,7 +1,14 @@
 <%- model_class = Basket -%>
 
 <% if notice %>
-    <p id="notice"><%= notice %></p>
+    <div class="row">
+      <div>
+        <div class="update-nag">
+          <div class="update-split update-success"></div>
+          <div class="update-text"><%= notice %></div>
+        </div>
+      </div>
+    </div>
 <% end %>
 
 
