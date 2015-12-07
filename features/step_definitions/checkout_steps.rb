@@ -24,9 +24,6 @@ Given(/^I am logged in$/)do
 end
 
 Then(/^I should be able to place an order$/)do
-   puts current_url
    click_button('place_order')
    expect(page).to have_text('Order was successfully created.')
-    puts current_url
-
 end
